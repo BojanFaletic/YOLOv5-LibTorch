@@ -4,9 +4,9 @@ SET(CMAKE_BUILD_TYPE Release)
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 
-find_package(OpenCV REQUIRED)
+find_package(OpenCV 4.5 REQUIRED)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${TORCH_CXX_FLAGS}")
-set(CMAKE_PREFIX_PATH /home/nebula/libtorch)
+set(CMAKE_PREFIX_PATH libtorch)
 find_package(Torch REQUIRED)
 add_executable(YOLOv5LibTorch src/YOLOv5LibTorch.cpp)
 
