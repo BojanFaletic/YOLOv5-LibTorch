@@ -86,7 +86,6 @@ std::vector<torch::Tensor> non_max_suppression(torch::Tensor preds,
 
 int main() {
 // Loading  Module
-#if 0
   torch::jit::script::Module module =
       torch::jit::load("../yolov5s.torchscript.pt");
 
@@ -96,7 +95,6 @@ int main() {
   while (std::getline(f, name)) {
     classnames.push_back(name);
   }
-#endif
 
   cv::VideoCapture camera(0);
 
@@ -123,8 +121,7 @@ int main() {
     //cv::cvtColor(img, img, cv::COLOR_BGR2RGB);
 
     // display
-    cv::imshow("Webcam", img);
-#if 0
+    // cv::imshow("Webcam", img);
     torch::Tensor imgTensor =
         torch::from_blob(img.data, {img.rows, img.cols, 3}, torch::kByte);
     imgTensor = imgTensor.permute({2, 0, 1});
@@ -159,8 +156,8 @@ int main() {
     cv::putText(frame, "FPS: " + std::to_string(int(1e7 / (clock() - start))),
                 cv::Point(50, 50), cv::FONT_HERSHEY_SIMPLEX, 1,
                 cv::Scalar(0, 255, 0), 2);
-    cv::imshow("", frame);
-#endif
+    cv::imshow("Window", frame);
+
     // wait 10 ms
     if (cv::waitKey(10) >= 0)
       break;
